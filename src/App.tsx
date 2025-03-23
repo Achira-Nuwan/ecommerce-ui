@@ -9,7 +9,6 @@ import ProductList from './pages/ProductList'
 function App() {
 
   return (
-   <div>
     <AuthProvider>
       <BrowserRouter>
         <Routes>
@@ -22,8 +21,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
-   </div>
-
   )
 }
 

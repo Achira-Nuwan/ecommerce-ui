@@ -30,6 +30,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import logo from "../assets/DHF_logo.png";
 
 // Define CartItem interface
 export interface CartItem {
@@ -192,10 +193,19 @@ export default function CartPage() {
   return (
     <Box>
         <AppBar sx={{marginBottom:3, backgroundColor:"#27374D"}}>
-            <Toolbar>
-                <Typography variant="h6" sx={{flexGrow:1, textAlign:"left"}}>
-                    DHF
-                </Typography>
+            <Toolbar >
+                <Box sx={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+                    <Box sx={{
+                        backgroundImage: `url(${logo})`,
+                        backgroundSize:"contain",
+                        backgroundRepeat:"no-repeat",
+                        backgroundPosition:"center", 
+                        height:"75px", 
+                        width:"75px", 
+                        alignItems:"center",
+                        justifyContent:"center"
+                    }}/>
+                </Box>
                 <TextField 
                     placeholder="Search.."
                     size="small"

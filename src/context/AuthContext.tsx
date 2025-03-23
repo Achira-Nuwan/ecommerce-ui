@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import AuthContextType from "../types/AuthContextType";
 import AuthProviderPropsType from "../types/AuthProviderPropsType";
 
@@ -16,12 +16,22 @@ export function AuthProvider({children}: AuthProviderPropsType){
     function login(jwtToken: string){
         setIsAuthenticated(true);
         setJwtToken(jwtToken);
+        localStorage.setItem('jwtToken', jwtToken);
     }
 
     function logout(){
         setIsAuthenticated(false);
         setJwtToken(null);
+        localStorage.removeItem('jwtToken');
     }
+
+    useEffect(() => {
+        const token = localStorage.getItem('jwtToken');
+        if(token){
+            setIsAuthenticated(true);
+            setJwtToken(token);
+        }
+    },[])
 
     return(
         <AuthContext.Provider value={{ isAuthenticated, jwtToken, login, logout}}>

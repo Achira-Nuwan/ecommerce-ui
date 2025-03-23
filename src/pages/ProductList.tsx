@@ -55,7 +55,7 @@ const ProductList = () => {
     const fetchCartItems = async () => {
         try {
             const userId = 1; // Replace with dynamic user ID
-            const response = await axios.get(`http://localhost:8080/cart/${userId}`, { headers: { Authorization: `Bearer ${jwtToken}`}});
+            const response = await axios.get(`http://localhost:8080/cart/${userId}`, config);
             const items = response.data.items;
             setCartItems(items); // Update cartItems state
         } catch (error) {
@@ -65,7 +65,7 @@ const ProductList = () => {
 
     const fetchCategories = async () => {
         try{
-            const response = await axios.get("http://localhost:8080/categories", { headers: { Authorization: `Bearer ${jwtToken}`}});
+            const response = await axios.get("http://localhost:8080/categories", config);
             setCategories(response.data);
             console.log("Categories:",response.data);
         }catch (error){
@@ -107,7 +107,7 @@ const ProductList = () => {
                 ],
             };
             console.log("product_id:",);
-            const response = await axios.post("http://localhost:8080/cart/add", cartData, { headers: { Authorization: `Bearer ${jwtToken}`}});
+            const response = await axios.post("http://localhost:8080/cart/add", cartData, config);
             console.log("Post Request:", response.data);
             
             if (response.status === 200) {
@@ -274,12 +274,13 @@ const ProductList = () => {
                             {/* Profile Drop Down */}
                             {isProfileHovered &&(
                                 <ProfileDropDown sx={{transition: "opacity 1s ease, transform 1s ease"}}>
-                                    <Typography sx={{color:"black", textAlign:"left",px:2, pt:2}}>My Account</Typography>
-                                    <Typography sx={{color:"black", textAlign:"left",px:2, mt:1}}>Orders</Typography>
-                                    <Typography sx={{color:"black", textAlign:"left",px:2, mt:1}}>Payments</Typography>
-                                    <Typography sx={{color:"black", textAlign:"left",px:2, mt:1}}>Help Center</Typography>
-                                    <Typography sx={{borderBottom:1, borderColor:"lightgray", m:2}}></Typography>
-                                    <Typography sx={{color:"gray", textAlign:"left",px:2}}>Settings</Typography>
+                                    <MenuItem sx={{color:"black", textAlign:"left",px:2, pt:2, fontSize:"15px"}}>My Account</MenuItem>
+                                    <MenuItem sx={{color:"black", textAlign:"left",px:2, fontSize:"15px"}}>Orders</MenuItem>
+                                    <MenuItem sx={{color:"black", textAlign:"left",px:2, fontSize:"15px"}}>Payments</MenuItem>
+                                    <MenuItem sx={{color:"black", textAlign:"left",px:2, fontSize:"15px"}}>Help Center</MenuItem>
+                                    <MenuItem sx={{borderBottom:1, borderColor:"lightgray", mx:1}}></MenuItem>
+                                    <MenuItem sx={{color:"gray", textAlign:"left",px:2, fontSize:"15px"}}>Settings</MenuItem>
+                                    
                                     <Box sx={{p:2}}>
                                         <Button sx={{
                                             color:"white", 
