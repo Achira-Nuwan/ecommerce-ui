@@ -1,11 +1,10 @@
 import { CheckBox, LockOutlined } from "@mui/icons-material";
 import { Box, Button, Card, CardContent, TextField, Typography } from "@mui/material";
-import axios from "axios";
 import { Field, Form, Formik } from "formik";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { useAuth } from "../context/AuthContext";
+//import { useAuth } from "../context/AuthContext";
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required("Required"),
@@ -14,7 +13,7 @@ const LoginSchema = Yup.object().shape({
 
 const Login: React.FC = () => {
 
-  const { login } = useAuth();
+  //const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (username:string, password:string) => {
@@ -24,10 +23,10 @@ const Login: React.FC = () => {
     }
 
     try{
-      const response = await axios.post("http://localhost:8080/auth/login",data);
+      {/*const response = await axios.post("http://localhost:8080/auth/login",data);
       console.log("Login details:", response.data);
       login(response.data);
-      navigate("/");
+      navigate("/cart");*/}
 
     }catch (error){
       console.error("Error login with username and password");
@@ -79,11 +78,16 @@ const Login: React.FC = () => {
                         <Typography sx={{fontSize:"14px"}}>Forgot password?</Typography>
                     </Box>
                 </Box>
-                <Button type="submit" fullWidth variant="contained" color="primary" sx={{ mt: 2, py: 1.5 }}>
+                <Button type="submit" fullWidth variant="contained" sx={{ mt: 2, py: 1.5 ,  background: "linear-gradient(to right, #2e1049, #6d43a2)" }}>
                   Sign In
                 </Button>
                 <Box>
-                    <Typography sx={{fontSize:"14px",py:2, color:"gray"}}>Don't have an account? Sign up</Typography>
+                    <Typography sx={{fontSize:"14px",py:2, color:"gray"}}>
+                      Don't have an account? {" "}
+                      <Link to="/customer" style={{textDecoration:"none", color:"#1976d2", fontWeight:"bold"}}>
+                        Sign up
+                      </Link>
+                      </Typography>
                 </Box>
               </Form>
             )}

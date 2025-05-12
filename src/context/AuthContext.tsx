@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+/*import { createContext, useContext, useEffect, useState } from "react";
 import AuthContextType from "../types/AuthContextType";
 import AuthProviderPropsType from "../types/AuthProviderPropsType";
 
@@ -42,4 +42,4 @@ export function AuthProvider({children}: AuthProviderPropsType){
 
 export function useAuth(){
     return useContext(AuthContext);
-}
+}*/
